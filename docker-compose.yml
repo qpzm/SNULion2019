@@ -1,0 +1,26 @@
+version: '3'
+
+volumes:
+  django_db_dev: {}
+
+services:
+  db:
+    image: postgres
+    volumes:
+    - django_db_dev:/var/lib/postgresql/data
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-dev
+    command:
+      - bash
+      - -c
+      - |
+        /wait-for-it.sh db:5432 -t 10
+        python manage.py runserver 0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

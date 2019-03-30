@@ -1,0 +1,9 @@
+<h1>feed page</h1>
+<a href="/feeds/new">new feed</a>
+{% for feed in feeds %}
+  <div>
+    <a href="/feeds/{{ feed.id }}">더보기</a>
+    <p>{{ feed.title }}</p>
+    <p>{{ feed.content }}</p>
+  </div>
+{% endfor %}
