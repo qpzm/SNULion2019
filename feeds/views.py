@@ -21,6 +21,16 @@ def show(request, id):
         feed = Feed.objects.get(id=id)
         return render(request, 'feeds/show.html', {'feed': feed})
 
+def update(request, id):
+    if request.method == 'GET':
+        feed = Feed.objects.get(id=id)
+        return render(request, 'feeds/update.html', {'feed': feed})
+    elif request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        Feed.objects.filter(id=id).update(title=title, content=content)
+        return redirect('/feeds')
+
 def delete(request, id):
     Feed.objects.get(id=id).delete()
     return redirect('/feeds')

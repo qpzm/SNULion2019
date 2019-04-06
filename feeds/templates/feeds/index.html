@@ -6,6 +6,7 @@
   <p>{{ feed.title }}</p>
   <p>{{ feed.content }}</p>
   <a href="/feeds/{{ feed.id }}">더보기</a>
+  <a href="/feeds/{{ feed.id }}/update">수정</a>
   <a href="/feeds/{{ feed.id }}/delete">삭제</a>
 {% endfor %}
 {% endblock %}
