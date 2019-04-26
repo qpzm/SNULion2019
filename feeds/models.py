@@ -13,6 +13,10 @@ class Feed(models.Model):
     title = models.CharField(max_length=256)
     content = models.TextField()
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    likers = models.ManyToManyField(User,
+                                    blank=True,
+                                    related_name='liked_feeds',
+                                    through='Like')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)
 
@@ -37,6 +41,12 @@ class FeedComment(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Profile(models.Model):

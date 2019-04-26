@@ -1,4 +1,3 @@
-from django.conf.urls import include
 from django.urls import path
 from feeds import views
 
@@ -10,4 +9,5 @@ urlpatterns = [
     path('<int:id>/delete/', views.delete, name='delete'),
     path('<int:id>/comments/', views.create_comment, name='create_comment'),
     path('<int:id>/comments/<int:cid>/', views.delete_comment, name='delete_comment'),
+    path('<int:pk>/like/', views.feed_like, name='like'),
 ]
