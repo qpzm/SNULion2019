@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feeds.apps.FeedsConfig',
+    'accounts.apps.AccountsConfig',
+    'faker',
 ]
 
 MIDDLEWARE = [
