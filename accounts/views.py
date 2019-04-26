@@ -24,7 +24,7 @@ def login(request):
             return redirect('/feeds')
         else:
             return render(request, 'accounts/login.html',
-                          {'error': 'username or pssword is incorrect'})
+                          {'error': 'username or password is incorrect'})
     else:
         return render(request, 'accounts/login.html')
 
