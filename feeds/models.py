@@ -53,11 +53,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     college = models.CharField(max_length=20, blank=True)
     major = models.CharField(max_length=20, blank=True)
-    follows = models.ManyToManyField('self',
+    # followers -> Follow -> User & User -> Follow -> followings
+    followings = models.ManyToManyField('self',
                                      through='Follow',
                                      through_fields=('sender', 'receiver'),
                                      blank=True,
-                                     related_name='followed',
+                                     related_name='followers',
                                      symmetrical=False)
 
     def __str__(self):
