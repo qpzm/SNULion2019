@@ -30,5 +30,17 @@
       삭제
     </a>
   {% endif %}
+  <p>
+    작성자: <strong>{{ feed.author.username }}</strong>
+      {% if request.user.is_authenticated and request.user != feed.author %}
+        <a href="/feeds/{{ feed.author.id }}/follow">
+          {% if request.user.profile not in feed.author.profile.followed.all %}
+            팔로우
+          {% else %}
+            팔로우 취소
+          {% endif %}
+        </a>
+      {% endif %}
+  </p>
 {% endfor %}
 {% endblock %}

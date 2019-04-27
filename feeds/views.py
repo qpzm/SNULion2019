@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Feed, FeedComment, Like
+from .models import Feed, FeedComment, Like, Follow
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 
@@ -65,4 +65,15 @@ def feed_like(request, pk):
         feed.like_set.get(user_id=request.user.id).delete()
     else:
         Like.objects.create(user_id=request.user.id, feed_id=feed.id)
+    return redirect('/feeds')
+
+
+def follow_manager(request, pk):
+    # Note! Follow between Profiles not User
+    sender_id = request.user.profile.id
+    follows = Follow.objects.filter(sender_id=sender_id, receiver_id=pk)
+    if follows.count() == 0:
+        Follow.objects.create(sender_id=sender_id, receiver_id=pk)
+    else:
+        follows.delete()
     return redirect('/feeds')

@@ -53,6 +53,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     college = models.CharField(max_length=20, blank=True)
     major = models.CharField(max_length=20, blank=True)
+    follows = models.ManyToManyField('self',
+                                     through='Follow',
+                                     through_fields=('sender', 'receiver'),
+                                     blank=True,
+                                     related_name='followed',
+                                     symmetrical=False)
 
     def __str__(self):
         return 'id=%d, user id=%d, college=%s, major=%s' % \
@@ -64,3 +70,11 @@ class Profile(models.Model):
             Profile.objects.create(user=instance)
         else:
             instance.profile.save()
+
+
+class Follow(models.Model):
+    sender = models.ForeignKey(Profile, related_name='sent_follows', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(Profile, related_name='received_follows', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '%s follows %s' % (self.sender, self.receiver)
