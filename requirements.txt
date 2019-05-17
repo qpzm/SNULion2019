@@ -1,4 +1,23 @@
-Django>=2.0,<3.0
-psycopg2>=2.7,<3.0
-faker >= 1.0.4
-graphene-django>=2.0
+aniso8601==3.0.2
+Django==2.2.1
+django-appconf==1.0.3
+django-compressor==2.2
+django-sass-processor==0.7.3
+Faker==1.0.6
+graphene==2.1.3
+graphene-django==2.2.0
+graphql-core==2.1
+graphql-relay==0.4.5
+libsass==0.18.0
+Pillow==6.0.0
+promise==2.2.1
+psycopg2==2.8.2
+python-dateutil==2.8.0
+pytz==2019.1
+rcssmin==1.0.6
+rjsmin==1.0.12
+Rx==1.6.1
+singledispatch==3.4.0.3
+six==1.12.0
+sqlparse==0.3.0
+text-unidecode==1.2

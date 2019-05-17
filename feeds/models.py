@@ -17,6 +17,7 @@ class Feed(models.Model):
                                     blank=True,
                                     related_name='liked_feeds',
                                     through='Like')
+    photo = models.ImageField(blank=True, upload_to='feed_photos')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)
 

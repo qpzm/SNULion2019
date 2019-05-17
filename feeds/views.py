@@ -12,8 +12,10 @@ def index(request):
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
+        photo = request.FILES['photo']
         Feed.objects.create(title=title,
                             content=content,
+                            photo=photo,
                             author=User.objects.get(id=request.user.id))
         return redirect('/feeds')
 
