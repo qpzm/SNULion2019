@@ -12,7 +12,7 @@ def index(request):
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        photo = request.FILES['photo']
+        photo = request.FILES.get('photo', '')
         Feed.objects.create(title=title,
                             content=content,
                             photo=photo,
