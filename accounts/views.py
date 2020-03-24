@@ -30,4 +30,5 @@ def login(request):
 
 
 def logout(request):
-    return render(request, 'accounts/login.html')
+    auth.logout(request)
+    return render(request, '/feeds')
